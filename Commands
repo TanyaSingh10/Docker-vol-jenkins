@@ -1,0 +1,30 @@
+Commands used on terminal of Docker Desktop:
+
+1. docker volume create jenkins_data
+
+2. docker volume ls
+
+3. docker run -d \
+     --name myjenkins \
+     -p 8080:8080 -p 50000:50000 \
+     -v jenkins_data:/var/jenkins_home \
+     jenkins/jenkins:lts-jdk17
+
+4. docker ps
+
+5. docker exec -it myjenkins cat /var/jenkins_home/secrets/initialAdminPassword #for the password of Jenkins
+
+6. docker stop myjenkins #container not volume
+
+7. docker rm myjenkins #removing container
+
+8. docker ps -a #jenkins should be gone
+
+#recreate it
+9. docker run -d \
+     --name myjenkins \
+     -p 8080:8080 -p 50000:50000 \
+     -v jenkins_data:/var/jenkins_home \
+     jenkins/jenkins:lts-jdk17
+
+10. Then open https://localhost:8080 you'll see your data is still there
